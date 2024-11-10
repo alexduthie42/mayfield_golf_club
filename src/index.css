@@ -11,3 +11,46 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar {
+  padding-top: 15px;
+}
+
+.logo {
+  height: auto;
+  width: 250px;
+}
+
+.background {
+  height: auto;
+  width: 100%;
+}
+
+.headerbar {
+  width: 1300px;
+  right: 0px;
+  left: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.headerdrawer {
+  background-color:rgb(50, 141, 233);
+}
+
+.drawerbutton {
+  display: flex;
+  padding-left: 10px;
+  align-items: center;
+}
+
+.menubutton {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+
+
+
