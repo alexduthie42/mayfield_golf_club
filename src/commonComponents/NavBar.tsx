@@ -16,13 +16,13 @@ interface NavBarProps {
 const pagesMap: Map<number, string> = new Map([
   [0, "home"],
   [1, "contact"],
-  [2, "play"],
-  [3, "schedule"]
+  [2, "schedule"],
+  [3, "play"]
 ]);
 
 export default function NavBar(navBarProps: NavBarProps) {
   return (
-    <div className='navbar' >
+    <div className='navbar'>
       <Tabs size='lg' align='center' isFitted onChange={(index) => navBarProps.setPage(pagesMap.get(index) ?? "home")}>
         <TabList>
           <Tab>Home</Tab>
