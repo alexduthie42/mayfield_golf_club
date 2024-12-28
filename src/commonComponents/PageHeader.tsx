@@ -9,29 +9,14 @@ import { Center, Grid, GridItem } from '@chakra-ui/react';
 interface PageHeaderProps {
   page: string;
   setPage: (page: string) => void;
+  dimensions: {
+    height: number;
+    width: number;
+  };
 }
 
 export default function PageHeader(pageHeaderProps: PageHeaderProps) {
-
-  const [dimensions, setDimensions] = React.useState({ 
-    height: window.innerHeight,
-    width: window.innerWidth
-  })
-  
-  React.useEffect(() => {
-    function handleResize() {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth
-      })
-    }
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  })
-
-  if (dimensions.width > 1300)
+  if (pageHeaderProps.dimensions.width > 1300)
   {
     return (
         <Grid templateColumns='repeat(5, 1fr)' gap={6} className='headerbar'>
@@ -47,7 +32,6 @@ export default function PageHeader(pageHeaderProps: PageHeaderProps) {
   else 
   {
     return (
-
         <Grid templateColumns='repeat(4, 1fr)' className='headerdrawer'>
             <GridItem colSpan={1} className='drawerbutton'>
                 <NavDrawer page={pageHeaderProps.page} setPage={pageHeaderProps.setPage}/>
