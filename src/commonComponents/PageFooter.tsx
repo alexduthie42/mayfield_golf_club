@@ -30,8 +30,8 @@ export default function PageFooter() {
               <Center>   
                 <GridItem colSpan={1}>
                     <Text>Contact	&nbsp;<PhoneIcon/></Text>
-                    <Link href={emailAddress}>Email: {emailAddress}</Link>
-                    <Text>Phone: +64 3 303 6342</Text>
+                    <Link href={emailAddress}>{emailAddress}</Link>
+                    <Text>+64 3 303 6342</Text>
                 </GridItem>
               </Center>
           </Grid>
