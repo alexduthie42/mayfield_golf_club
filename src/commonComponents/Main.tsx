@@ -42,7 +42,7 @@ export default function Main() {
       <div className='content'>
           {pages[page]}
       </div>
-      <PageFooter/>
+      <PageFooter dimensions={dimensions}/>
     </div>
   );
 }

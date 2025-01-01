@@ -5,6 +5,7 @@ import NavDrawer from './NavDrawer';
 import logo from './../content/MayfieldGolfClubLogo.png';
 import logoWhite from './../content/MayfieldGolfClubLogoWhite.png';
 import { Center, Grid, GridItem } from '@chakra-ui/react';
+import { TabletWidth } from './Globals';
 
 interface PageHeaderProps {
   page: string;
@@ -16,7 +17,7 @@ interface PageHeaderProps {
 }
 
 export default function PageHeader(pageHeaderProps: PageHeaderProps) {
-  if (pageHeaderProps.dimensions.width > 1300)
+  if (pageHeaderProps.dimensions.width > TabletWidth)
   {
     return (
         <Grid templateColumns='repeat(5, 1fr)' gap={6} className='headerbar'>
