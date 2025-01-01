@@ -1,7 +1,7 @@
 import './App.css';
 import Main from './commonComponents/Main';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-import { headingTheme } from "./themes/Heading";
+import { ChakraProvider, extendTheme, theme as base } from '@chakra-ui/react'
+import { fontTheme } from "./themes/fontTheme";
 
 const theme = extendTheme(
 {
@@ -9,7 +9,9 @@ const theme = extendTheme(
     50: "#328ee9",
   },
   components: {
-      Heading: headingTheme,
+      Heading: fontTheme,
+      Text: fontTheme,
+      Link: fontTheme
   }
 });
 

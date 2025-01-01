@@ -22,7 +22,7 @@ import {
 
 function MonthItem(monthName: string, events: string[] ) {
   return (
-    <AccordionItem>
+    <AccordionItem key={monthName}>
       <h2>
         <AccordionButton>
           <Box as='span' flex='1' textAlign='left'>
@@ -55,7 +55,7 @@ function MonthItem(monthName: string, events: string[] ) {
 
 function EventRow(event: string ) {
   return (
-    <Tr>
+    <Tr key={event}>
       <Td>January 1st</Td>
       <Td>{event}</Td>
       <Td>test</Td>
@@ -67,7 +67,7 @@ export default function Schedule() {
   return (
     <div>
       <div className='heading'>
-        <Heading as='h2' size='2xl' variant="basic">
+        <Heading as='h2' size='2xl' variant="boldBlue">
           2024 Schedule
         </Heading>
       </div>

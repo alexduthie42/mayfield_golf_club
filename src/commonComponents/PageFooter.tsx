@@ -16,9 +16,9 @@ export default function PageFooter() {
           <Grid templateColumns='repeat(3, 1fr)' className='footergrid'>     
               <Center>
                 <GridItem colSpan={1}>
-                    <Text>Address	&nbsp;<StarIcon/></Text>
-                    <Link href={googleMapUrl}>30 Bulls Road
-                      <br></br>Mayfield 7778
+                    <Text variant={"semiboldWhite"}>Address	&nbsp;<StarIcon/></Text>
+                    <Link variant={"semiboldWhite"} href={googleMapUrl}>30 Bulls Road, Mayfield
+                      <br></br>Canterbury, New Zealand
                     </Link>
                 </GridItem>  
               </Center> 
@@ -29,9 +29,9 @@ export default function PageFooter() {
               </Center>    
               <Center>   
                 <GridItem colSpan={1}>
-                    <Text>Contact	&nbsp;<PhoneIcon/></Text>
-                    <Link href={emailAddress}>{emailAddress}</Link>
-                    <Text>+64 3 303 6342</Text>
+                    <Text variant={"semiboldWhite"}>Contact	&nbsp;<PhoneIcon/></Text>
+                    <Link variant={"semiboldWhite"} href={emailAddress}>{emailAddress}</Link>
+                    <Text variant={"semiboldWhite"}>+64 3 303 6342</Text>
                 </GridItem>
               </Center>
           </Grid>
