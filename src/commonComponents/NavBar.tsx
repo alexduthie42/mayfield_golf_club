@@ -16,9 +16,9 @@ interface NavBarProps {
 
 const pagesMap: Map<number, string> = new Map([
   [0, "home"],
-  [1, "contact"],
+  [1, "course"],
   [2, "schedule"],
-  [3, "play"]
+  [3, "contact"]
 ]);
 
 export default function NavBar(navBarProps: NavBarProps) {
@@ -52,9 +52,9 @@ export default function NavBar(navBarProps: NavBarProps) {
       <Tabs index={tabIndex} size='lg' align='center' isFitted onChange={(index) => handleTabsChange(index)}>
         <TabList>
           <Tab>Home</Tab>
-          <Tab>Contact</Tab>
+          <Tab>Course</Tab>
           <Tab>Schedule</Tab>
-          <Tab>Play</Tab>
+          <Tab>Contact</Tab>          
         </TabList>
       </Tabs>
     </div>

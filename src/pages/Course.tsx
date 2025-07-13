@@ -3,10 +3,10 @@ import './../App.css';
 import PageHeader from '../commonComponents/PageHeader';
 import background from './../content/MayfieldGolfClub.png'
 
-export default function Play() {
+export default function Course() {
   return (
     <div>
-      <p>play</p>
+      <p>course</p>
       <img src={background} className='background'/>
     </div>
   );

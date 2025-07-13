@@ -8,7 +8,7 @@ body {
 }
 
 .content {
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 150px);
   font-family: "Encode Sans Condensed", serif;
 }
 
@@ -115,7 +115,7 @@ body {
 
 
 .heading {
-  width: 500px;
+  max-width: 500px;
   padding-top: 20px;
   text-align: center;
   margin-left: auto;

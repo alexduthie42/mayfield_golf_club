@@ -45,9 +45,9 @@ export default function NavDrawer(navDrawerProps: NavDrawerProps) {
                 <DrawerHeader>Menu</DrawerHeader>
 
                 <Button variant={buttonVariant} mr={3} className='menubutton' onClick={() => OnMenuButtonClick("home", navDrawerProps.setPage, onClose)}>Home</Button>
-                <Button variant={buttonVariant} mr={3} className='menubutton' onClick={() => OnMenuButtonClick("contact", navDrawerProps.setPage, onClose)}>Contact</Button>
+                <Button variant={buttonVariant} mr={3} className='menubutton' onClick={() => OnMenuButtonClick("course", navDrawerProps.setPage, onClose)}>Course</Button>
                 <Button variant={buttonVariant} mr={3} className='menubutton' onClick={() => OnMenuButtonClick("schedule", navDrawerProps.setPage, onClose)}>Schedule</Button>
-                <Button variant={buttonVariant} mr={3} className='menubutton' onClick={() => OnMenuButtonClick("play", navDrawerProps.setPage, onClose)}>Play</Button>
+                <Button variant={buttonVariant} mr={3} className='menubutton' onClick={() => OnMenuButtonClick("contact", navDrawerProps.setPage, onClose)}>Contact</Button>
             </DrawerContent>
             </Drawer>
         </div>

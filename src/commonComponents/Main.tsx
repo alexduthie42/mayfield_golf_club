@@ -2,20 +2,19 @@ import React from 'react';
 import './../App.css';
 import Home from './../pages/Home';
 import Contact from './../pages/Contact';
-import Play from './../pages/Play';
 import Schedule from './../pages/Schedule';
+import Course from './../pages/Course';
 import PageHeader from './PageHeader';
 import PageFooter from './PageFooter';
-import { ChakraProvider } from '@chakra-ui/react'
 
 export default function Main() {
 
   const [page, setPage] = React.useState('home')
   const pages: { [id: string] : JSX.Element } = {
       "home": <Home/>,
-      "contact": <Contact/>,
-      "play": <Play/>,
-      "schedule": <Schedule/>
+      "course": <Course/>,
+      "schedule": <Schedule/>,
+      "contact": <Contact/>
   }
 
   const [dimensions, setDimensions] = React.useState({ 

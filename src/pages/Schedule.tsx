@@ -38,7 +38,6 @@ function MonthItem(monthName: string, events: string[] ) {
               <Tr>
                 <Th>Date</Th>
                 <Th>Event</Th>
-                <Th>Details</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -58,7 +57,6 @@ function EventRow(event: string ) {
     <Tr key={event}>
       <Td>January 1st</Td>
       <Td>{event}</Td>
-      <Td>test</Td>
     </Tr>
   )
 }
