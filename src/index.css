@@ -123,5 +123,17 @@ body {
   font-family: "Encode Sans Condensed", serif;
 }
 
+.courseMapContainer {
+  position: relative; /* Makes the container the reference for absolute positioning */
+  display: inline-block;
+}
+
+.courseMapContainer img {
+  display: block;
+  width: 50%; /* or fixed width if needed */
+  height: auto;
+  margin: 0 auto;
+}
+
 
 
