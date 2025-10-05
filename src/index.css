@@ -22,6 +22,8 @@ body {
   width: auto;
 }
 
+/******************** Slide show **********************/
+
 .slideShowContainer {
   position: relative;
   width: 100%;
@@ -48,6 +50,28 @@ body {
   transform: translate(-50%, -50%);
 }
 
+/******************** Nav Drawer **********************/
+
+.drawerbutton {
+  display: flex;
+  padding-left: 10px;
+  height: 75px;
+  align-items: center;
+}
+
+.menubutton {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+/******************** Page header **********************/
+
+.pageHeader {
+  position: sticky;
+  top: 0;              /* stick to the very top */
+  z-index: 1000;       /* make sure it stays above content */
+  background: #fff;    /* give it a background so content doesn’t show through */
+}
 
 .headerbar {
   width: 1300px;
@@ -56,7 +80,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   padding-top: 10px;
-  padding-bottom: 110px;
   height: 100px;
 }
 
@@ -64,6 +87,8 @@ body {
   background-color:rgb(50, 141, 233);
   height: 75px;
 }
+
+/******************** Page footer **********************/
 
 .footer {
   background-color:rgb(190, 190, 190);
@@ -93,17 +118,48 @@ body {
   width: 80px;
 }
 
-.drawerbutton {
-  display: flex;
-  padding-left: 10px;
-  height: 75px;
-  align-items: center;
+/******************** Page Title **********************/
+
+.titleContainer {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  max-height: 500px;
 }
 
-.menubutton {
-  margin-left: 10px;
-  margin-bottom: 10px;
+.titleImage {
+  min-height: 200px;
+  max-height: 500px;
+  width: 100%;
+  object-fit: cover;
 }
+
+.titleTextContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family: "Crimson Text", serif;
+  text-align: center;   /* <-- centers inline text inside */
+}
+
+.titleText {
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(16px, 4vw + 1rem, 700px);
+}
+
+.titleSubText {
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(16px, 2vw + 0.5rem, 200px);
+  margin-top: 0;         /* no extra gap above subtitle */
+  line-height: 0.5;      /* tighter line spacing */
+}
+
+
+/******************** Common **********************/
 
 .accordion {
   width: 1000px;
@@ -125,12 +181,15 @@ body {
 
 .courseMapContainer {
   position: relative; /* Makes the container the reference for absolute positioning */
-  display: inline-block;
+  display: block;
+  max-width: 750px;
+  margin: 0 auto;       /* centers horizontally */
+  padding-top: 10px;
 }
 
 .courseMapContainer img {
   display: block;
-  width: 50%; /* or fixed width if needed */
+  width: 100%; /* or fixed width if needed */
   height: auto;
   margin: 0 auto;
 }

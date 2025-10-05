@@ -1,4 +1,6 @@
 import { Button } from "@chakra-ui/react";
+import UseWindowSize from './UseWindowSize';
+import { TabletWidth } from './Globals';
 
 const HoleButton = ({
   top = "30%",
@@ -7,10 +9,14 @@ const HoleButton = ({
   label = "Click Me",
   onClick = () => {},
 }) => {
+  
+  const { width } = UseWindowSize();
+
   return (
     <Button
       colorScheme="blue"
       rounded="full"
+      size={width <= TabletWidth ? "xs" : "sm"}
       sx={{
         position: "absolute",
         top,

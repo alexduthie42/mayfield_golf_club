@@ -6,18 +6,17 @@ import logo from './../content/MayfieldGolfClubLogo.png';
 import logoWhite from './../content/MayfieldGolfClubLogoWhite.png';
 import { Center, Grid, GridItem } from '@chakra-ui/react';
 import { TabletWidth } from './Globals';
+import UseWindowSize from './UseWindowSize';
 
 interface PageHeaderProps {
   page: string;
   setPage: (page: string) => void;
-  dimensions: {
-    height: number;
-    width: number;
-  };
 }
 
 export default function PageHeader(pageHeaderProps: PageHeaderProps) {
-  if (pageHeaderProps.dimensions.width > TabletWidth)
+  const { width } = UseWindowSize();
+
+  if (width > TabletWidth)
   {
     return (
         <Grid templateColumns='repeat(5, 1fr)' gap={6} className='headerbar'>
