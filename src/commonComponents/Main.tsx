@@ -39,13 +39,11 @@ export default function Main() {
       };
     },
     center: {
-      zIndex: 1,
       x: 0,
       opacity: 1
     },
     exit: (direction: number) => {
       return {
-        zIndex: 0,
         x: direction < 0 ? "100%" : "-100%",
         opacity: 0
       };

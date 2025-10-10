@@ -2,6 +2,7 @@ import React from 'react';
 import './../App.css';
 import PageHeader from '../commonComponents/PageHeader';
 import background from './../content/MayfieldGolfClub.png'
+import ScheduleDroneShot from './../content/ScheduleDroneShot.jpg'
 import { 
   Accordion, 
   AccordionItem, 
@@ -64,10 +65,18 @@ function EventRow(event: string ) {
 export default function Schedule() {
   return (
     <div>
-      <div className='heading'>
-        <Heading as='h2' size='2xl' variant="boldBlue">
-          2024 Schedule
-        </Heading>
+      <div>    
+        <div className='titleContainer'>
+          <img src={ScheduleDroneShot} className='titleImage'/>
+          <div className='titleTextContainer'>
+            <div className='titleText'>
+              SCHEDULE
+            </div>
+            <div className='titleSubText'>
+              2025
+            </div>
+          </div>
+        </div>
       </div>
       <div className='accordion'>
         <Accordion allowToggle>

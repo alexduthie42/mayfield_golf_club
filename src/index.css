@@ -13,7 +13,7 @@ body {
 }
 
 .navbar {
-  padding-top: 15px;
+  padding-top: 20px;
 }
 
 .logo {
@@ -80,18 +80,18 @@ body {
   margin-left: auto;
   margin-right: auto;
   padding-top: 10px;
-  height: 100px;
+  height: 83px;
 }
 
 .headerdrawer {
-  background-color:rgb(50, 141, 233);
+  background-color:rgb(43, 108, 176);
   height: 75px;
 }
 
 /******************** Page footer **********************/
 
 .footer {
-  background-color:rgb(190, 190, 190);
+  background-color:rgb(43, 108, 176);
   color: rgb(255, 253, 253);
   position: relative;
   width:100%;
@@ -158,6 +158,38 @@ body {
   line-height: 0.5;      /* tighter line spacing */
 }
 
+/******************** Course Page **********************/
+
+.courseMapContainer {
+  position: relative; /* Makes the container the reference for absolute positioning */
+  display: block;
+  max-width: 750px;
+  margin: 0 auto;       /* centers horizontally */
+  padding-top: 10px;
+}
+
+
+.courseMapDesktop {
+  max-height: 800px;
+  width: auto;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
+.courseMapMobile {
+
+}
+
+.courseGrid {
+  min-width: 80%;
+  max-width: 200px;
+  right: 0px;
+  left: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 50px;
+}
 
 /******************** Common **********************/
 
@@ -179,20 +211,6 @@ body {
   font-family: "Encode Sans Condensed", serif;
 }
 
-.courseMapContainer {
-  position: relative; /* Makes the container the reference for absolute positioning */
-  display: block;
-  max-width: 750px;
-  margin: 0 auto;       /* centers horizontally */
-  padding-top: 10px;
-}
-
-.courseMapContainer img {
-  display: block;
-  width: 100%; /* or fixed width if needed */
-  height: auto;
-  margin: 0 auto;
-}
 
 
 

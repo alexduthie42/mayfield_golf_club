@@ -49,7 +49,7 @@ export default function NavBar(navBarProps: NavBarProps) {
 
   return (
     <div className='navbar'>
-      <Tabs index={tabIndex} size='lg' align='center' isFitted onChange={(index) => handleTabsChange(index)}>
+      <Tabs colorScheme='coreTheme' index={tabIndex} size='lg' align='center' isFitted onChange={(index) => handleTabsChange(index)}>
         <TabList>
           <Tab>Home</Tab>
           <Tab>Course</Tab>
