@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/mayfield_golf_club/static/css/main.5b1a543a.css",
+    "main.js": "/mayfield_golf_club/static/js/main.bcaf559b.js",
+    "static/js/453.39ddfc52.chunk.js": "/mayfield_golf_club/static/js/453.39ddfc52.chunk.js",
+    "static/media/hole2.jpg": "/mayfield_golf_club/static/media/hole2.c0e8427ae9aba774475a.jpg",
+    "static/media/hole1.jpg": "/mayfield_golf_club/static/media/hole1.d5ea936877924fa09d66.jpg",
+    "static/media/hole6.jpg": "/mayfield_golf_club/static/media/hole6.dbcd7f71dbd35388b556.jpg",
+    "static/media/hole3.jpg": "/mayfield_golf_club/static/media/hole3.985d813efc35011c2856.jpg",
+    "static/media/hole4.jpg": "/mayfield_golf_club/static/media/hole4.985d813efc35011c2856.jpg",
+    "static/media/hole8.jpg": "/mayfield_golf_club/static/media/hole8.cefb2356871a09e23039.jpg",
+    "static/media/hole5.jpg": "/mayfield_golf_club/static/media/hole5.2618fbef0e52041f3efd.jpg",
+    "static/media/hole9.jpg": "/mayfield_golf_club/static/media/hole9.0f6d10fd373f01386ed8.jpg",
+    "static/media/hole7.jpg": "/mayfield_golf_club/static/media/hole7.b29ef5a3c1d99d561865.jpg",
+    "static/media/Slide5.jpg": "/mayfield_golf_club/static/media/Slide5.5cccdf90ec709fba719f.jpg",
+    "static/media/Slide2.jpg": "/mayfield_golf_club/static/media/Slide2.5dff04ce83cb758973fe.jpg",
+    "static/media/Slide1.jpg": "/mayfield_golf_club/static/media/Slide1.0c9e6a26a33f87132ac0.jpg",
+    "static/media/Slide3.jpg": "/mayfield_golf_club/static/media/Slide3.d16afb7f796f97d0a041.jpg",
+    "static/media/Slide4.jpg": "/mayfield_golf_club/static/media/Slide4.b48920c8767e94e91786.jpg",
+    "static/media/TitleImage.jpg": "/mayfield_golf_club/static/media/TitleImage.6c3d83dce49272f52509.jpg",
+    "static/media/Image2.jpg": "/mayfield_golf_club/static/media/Image2.5f34323d3dfc57ded3c5.jpg",
+    "static/media/CourseMapImage.png": "/mayfield_golf_club/static/media/CourseMapImage.a729b544bf204c99b119.png",
+    "static/media/Image1.jpg": "/mayfield_golf_club/static/media/Image1.2664b8a15942e6daed45.jpg",
+    "static/media/MayfieldGolfClubEmblem.png": "/mayfield_golf_club/static/media/MayfieldGolfClubEmblem.70f8ee3b518c4f356535.png",
+    "index.html": "/mayfield_golf_club/index.html",
+    "main.5b1a543a.css.map": "/mayfield_golf_club/static/css/main.5b1a543a.css.map",
+    "main.bcaf559b.js.map": "/mayfield_golf_club/static/js/main.bcaf559b.js.map",
+    "453.39ddfc52.chunk.js.map": "/mayfield_golf_club/static/js/453.39ddfc52.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5b1a543a.css",
+    "static/js/main.bcaf559b.js"
+  ]
+}
