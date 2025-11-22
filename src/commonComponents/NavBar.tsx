@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from '../pages/Home';
+import Home from '../Pages/Home/Home';
 import './../App.css';
 import { 
   Tabs, 
@@ -15,10 +15,10 @@ interface NavBarProps {
 }
 
 const pagesMap: Map<number, string> = new Map([
-  [0, "home"],
-  [1, "course"],
-  [2, "schedule"],
-  [3, "contact"]
+  [0, "home"]
+  ,[1, "course"]
+  ,[2, "schedule"]
+  // ,[3, "contact"]
 ]);
 
 export default function NavBar(navBarProps: NavBarProps) {
@@ -54,7 +54,7 @@ export default function NavBar(navBarProps: NavBarProps) {
           <Tab>Home</Tab>
           <Tab>Course</Tab>
           <Tab>Schedule</Tab>
-          <Tab>Contact</Tab>          
+          {/* <Tab>Contact</Tab>           */}
         </TabList>
       </Tabs>
     </div>

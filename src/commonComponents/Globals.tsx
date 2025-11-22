@@ -1,2 +1,2 @@
-export const MobileWidth: number = 750;
-export const TabletWidth: number = 1300;
+export const MobileWidth: number = 1200;
+export const GoogleApiKey: string = "AIzaSyDzLvoYjk5irUTeW63xwl2IS1ouV12lsmA";

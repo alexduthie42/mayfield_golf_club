@@ -1,16 +1,17 @@
 import React from 'react';
-import './../App.css';
+import './App.css';
 import { AnimatePresence, motion } from "motion/react"
-import Home from './../pages/Home';
-import Contact from './../pages/Contact';
-import Schedule from './../pages/Schedule';
-import Course from './../pages/Course';
-import PageHeader from './PageHeader';
-import PageFooter from './PageFooter';
+import Home from './Pages/Home/Home';
+import Contact from './Pages/Contact/Contact';
+import Schedule from './Pages/Schedule/Schedule';
+import Course from './Pages/Course/Course';
+import PageHeader from './CommonComponents/PageHeader';
+import PageFooter from './CommonComponents/PageFooter';
 
 export default function Main() {
 
-  const pageOrder = ['home', 'course', 'schedule', 'contact'];
+  // const pageOrder = ['home', 'course', 'schedule', 'contact'];
+  const pageOrder = ['home', 'course', 'schedule'];
 
   const [page, setPage] = React.useState('home')
   const [prevPage, setPrevPage] = React.useState('home');
@@ -19,7 +20,7 @@ export default function Main() {
       "home": <Home/>,
       "course": <Course/>,
       "schedule": <Schedule/>,
-      "contact": <Contact/>
+      // "contact": <Contact/>
   }
 
   const handlePageChange = (newPage: string) => {

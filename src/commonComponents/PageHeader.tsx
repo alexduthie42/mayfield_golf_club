@@ -2,10 +2,10 @@ import React from 'react';
 import './../App.css';
 import NavBar from './NavBar';
 import NavDrawer from './NavDrawer';
-import logo from './../content/MayfieldGolfClubLogo.png';
-import logoWhite from './../content/MayfieldGolfClubLogoWhite.png';
+import logo from './../Content/MayfieldGolfClubLogo.png';
+import logoWhite from './../Content/MayfieldGolfClubLogoWhite.png';
 import { Center, Grid, GridItem } from '@chakra-ui/react';
-import { TabletWidth } from './Globals';
+import { MobileWidth } from './Globals';
 import UseWindowSize from './UseWindowSize';
 
 interface PageHeaderProps {
@@ -14,9 +14,11 @@ interface PageHeaderProps {
 }
 
 export default function PageHeader(pageHeaderProps: PageHeaderProps) {
-  const { width } = UseWindowSize();
 
-  if (width > TabletWidth)
+  const { width } = UseWindowSize();
+  const isDesktopView = width > MobileWidth;
+
+  if (isDesktopView)
   {
     return (
         <Grid templateColumns='repeat(5, 1fr)' gap={6} className='headerbar'>

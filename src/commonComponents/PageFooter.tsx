@@ -1,8 +1,8 @@
 import React from 'react';
 import './../App.css';
-import emblem from './../content/MayfieldGolfClubEmblem.png';
+import emblem from './../Content/MayfieldGolfClubEmblem.png';
 import { Text } from '@chakra-ui/react'
-import { Center, AbsoluteCenter, Grid, GridItem } from '@chakra-ui/react';
+import { Center, Grid, GridItem } from '@chakra-ui/react';
 import { PhoneIcon, StarIcon } from '@chakra-ui/icons'
 import { Link } from '@chakra-ui/react';
 import { MobileWidth } from './Globals';
