@@ -133,7 +133,14 @@ body {
   max-height: 500px;
   width: 100%;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
 }
+
+.titleImage.loaded {
+  opacity: 1;
+}
+
 
 .titleTextContainer {
   position: absolute;
