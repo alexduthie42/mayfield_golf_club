@@ -26,6 +26,11 @@ export default function Main() {
   const handlePageChange = (newPage: string) => {
     setPrevPage(page);
     setPage(newPage);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "auto"
+    });
   };
 
   const currentIndex = pageOrder.indexOf(page);
