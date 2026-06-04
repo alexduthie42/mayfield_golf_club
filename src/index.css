@@ -133,14 +133,7 @@ body {
   max-height: 500px;
   width: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.8s ease-in;
 }
-
-.titleImage.loaded {
-  opacity: 1;
-}
-
 
 .titleTextContainer {
   position: absolute;
@@ -173,8 +166,8 @@ body {
 .homeTextContainerCenter {
   text-align: center;   /* <-- centers inline text inside */
   max-width: 80%;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin: 0 auto;
 }
 
@@ -201,7 +194,7 @@ body {
 }
 
 .homePageContainerDesktop {
-  max-width: 80%;
+  max-width: 70%;
   right: 0px;
   left: 0px;
   margin-left: auto;
@@ -213,14 +206,32 @@ body {
     margin: 0 auto;
 }
 
-.homeGridDesktop {
-    padding-bottom: 40px;
-    margin: 0 auto;
-}
-
 .googleMap {
   width: 100%;
   height: 300px;
+}
+
+.greenFeesCard,
+.membershipCard {
+  width: 100%;
+  max-width: 400px;
+  margin: 16px auto;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  flex: 1;
+}
+
+.greenFeesCardBody {
+  padding-top: 0px;
+}
+
+
+@media (max-width: 768px) {
+  .greenFeesCard {
+    max-width: 100%;
+    margin: 12px 16px;
+    width: calc(100% - 32px);
+  }
 }
 
 /******************** Course Page **********************/
@@ -261,7 +272,7 @@ body {
 }
 
 .coursePageContainerDesktop {
-  max-width: 1200px;
+  max-width: 70%;
   padding-top: 30px;
   padding-bottom: 50px;
   right: 0px;
@@ -442,6 +453,14 @@ body {
   max-width: 80%;
   padding-top: 15px;
   margin: 0 auto;
+}
+
+.textMedium {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  color: rgb(98, 98, 98);
+  font-family: "PT Sans", sans-serif;
 }
 
 .textLarge {
