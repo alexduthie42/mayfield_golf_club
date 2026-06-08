@@ -14,7 +14,7 @@ import { Slide } from 'react-slideshow-image';
 import { Grid, GridItem, Text, Card, CardHeader, CardBody, Stack, Flex, Divider, CardFooter } from '@chakra-ui/react';
 import 'react-slideshow-image/dist/styles.css';
 
-const slides = [slide1, slide2, slide3, slide4, slide5];
+const slides = [slide1, slide2, slide4, slide5];
 
 interface ContentSectionProps {
   title: string;

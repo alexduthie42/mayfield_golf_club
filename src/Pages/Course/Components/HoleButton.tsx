@@ -47,7 +47,9 @@ const HoleButton = ({
           <ModalHeader>Hole {label}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <img src={holeImage[label]}/>
+            <div style={{ aspectRatio: '16 / 9', width: '100%' }}>
+              <img src={holeImage[label]} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
           </ModalBody>
 
           <ModalFooter>

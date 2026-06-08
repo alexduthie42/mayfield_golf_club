@@ -375,16 +375,26 @@ body {
   width: 300px;
 }
 
-.rbc-time-view .rbc-time-gutter {
+.rbc-time-view .rbc-time-content {
+  display: none !important;
+}
+
+.rbc-time-view .rbc-time-header {
+  border-bottom: 1px solid #CBD5E0;
+}
+
+.rbc-time-view {
+  border: none !important;
+}
+
+.rbc-time-header-gutter {
   display: none;
 }
 
-.rbc-time-view .rbc-time-content {
+.rbc-time-header-content {
+  border-right: 1px solid #CBD5E0;
+  border-left: 1px solid #CBD5E0;
   margin-left: 0 !important;
-}
-
-.rbc-time-view .rbc-time-content {
-  display: none;
 }
 
 .rbc-allday-cell {
@@ -396,12 +406,6 @@ body {
   display: none;
 }
 
-.rbc-time-view {
-  display: none;
-  border-bottom: none !important;
-  border-left: none !important;
-  border-right: none !important;
-}
 
 .rbc-time-header {
   height: 300px;
@@ -413,12 +417,35 @@ body {
   border-left: 1px solid #CBD5E0; /* Chakra's gray.300 */
 }
 
-.rbc-event .rbc-event-content {
+.rbc-event {
+  height: 50px;
+}
+
+.rbc-event-content {
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   white-space: normal !important;
-  overflow: visible !important;
-  text-overflow: unset !important;
-  line-height: 1.2;
-  padding: 2px 4px;
+  line-height: 1.3;
+}
+
+th.rbc-header:nth-child(2) {
+  display: none;
+}
+
+.rbc-agenda-time-cell {
+  display: none;
+}
+
+.rbc-agenda-event-cell {
+  border-left: 1px solid #CBD5E0;
+}
+
+.rbc-agenda-date-cell {
+  background-color: white !important;
+  color: rgb(98, 98, 98);
 }
 
 
