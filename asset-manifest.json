@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/mayfield_golf_club/static/css/main.0fa5b828.css",
-    "main.js": "/mayfield_golf_club/static/js/main.b0a5b88d.js",
+    "main.js": "/mayfield_golf_club/static/js/main.96ca328e.js",
     "static/js/453.39ddfc52.chunk.js": "/mayfield_golf_club/static/js/453.39ddfc52.chunk.js",
     "static/media/Slide5.jpg": "/mayfield_golf_club/static/media/Slide5.5d3aea3a209a5611e246.jpg",
     "static/media/Slide2.jpg": "/mayfield_golf_club/static/media/Slide2.a1fb7e46eabd7e645539.jpg",
@@ -23,11 +23,11 @@
     "static/media/MayfieldGolfClubEmblem.png": "/mayfield_golf_club/static/media/MayfieldGolfClubEmblem.70f8ee3b518c4f356535.png",
     "index.html": "/mayfield_golf_club/index.html",
     "main.0fa5b828.css.map": "/mayfield_golf_club/static/css/main.0fa5b828.css.map",
-    "main.b0a5b88d.js.map": "/mayfield_golf_club/static/js/main.b0a5b88d.js.map",
+    "main.96ca328e.js.map": "/mayfield_golf_club/static/js/main.96ca328e.js.map",
     "453.39ddfc52.chunk.js.map": "/mayfield_golf_club/static/js/453.39ddfc52.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0fa5b828.css",
-    "static/js/main.b0a5b88d.js"
+    "static/js/main.96ca328e.js"
   ]
 }
