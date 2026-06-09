@@ -1,12 +1,10 @@
 import React from 'react';
 import './../../App.css';
 import TitleImage from './Content/TitleImage.jpg'
-import { 
-  Box
-} from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { Button, ButtonGroup, Flex, Text, Grid, GridItem } from '@chakra-ui/react';
 import PageTitle from '../../CommonComponents/PageTitle';
-import { Calendar, dateFnsLocalizer, momentLocalizer } from 'react-big-calendar';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
 import { ToolbarProps, EventPropGetter } from 'react-big-calendar';
 import moment from 'moment'
 import { MobileWidth } from '../../CommonComponents/Globals';
@@ -14,22 +12,21 @@ import UseWindowSize from '../../CommonComponents/UseWindowSize';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import MensEventsRaw from './Content/MensEvents.json';
 import WomensEventsRaw from './Content/WomensEvents.json';
+import MensAorangiEventsRaw from './Content/MensAorangiEvents.json';
+import WomensAorangiEventsRaw from './Content/WomensAorangiEvents.json';
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
+  Modal, ModalOverlay, ModalContent, ModalHeader,
+  ModalBody, ModalCloseButton, useDisclosure,
 } from '@chakra-ui/react';
 
 type MyEvent = {
   title: string;
   start: Date;
   end: Date;
-  gender: 'mens' | 'womens';
+  gender: 'mens' | 'womens' | 'mensAorangi' | 'womensAorangi';
 };
+
+type CalendarMode = 'club' | 'aorangi';
 
 const mensEvents: MyEvent[] = MensEventsRaw.map(e => ({
   ...e,
@@ -45,26 +42,68 @@ const womensEvents: MyEvent[] = WomensEventsRaw.map(e => ({
   gender: 'womens',
 }));
 
-const events: MyEvent[] = [...mensEvents, ...womensEvents];
+const mensAorangiEvents: MyEvent[] = MensAorangiEventsRaw.map(e => ({
+  ...e,
+  start: new Date(e.start),
+  end: new Date(e.end),
+  gender: 'mensAorangi',
+}));
+
+const womensAorangiEvents: MyEvent[] = WomensAorangiEventsRaw.map(e => ({
+  ...e,
+  start: new Date(e.start),
+  end: new Date(e.end),
+  gender: 'womensAorangi',
+}));
+
+const clubEvents: MyEvent[] = [...mensEvents, ...womensEvents];
+const aorangiEvents: MyEvent[] = [...mensAorangiEvents, ...womensAorangiEvents];
 
 const eventStyleGetter: EventPropGetter<MyEvent> = (event) => ({
   style: {
-    backgroundColor: event.gender === 'mens' ? '#267703' : '#2b6cb0',
+    backgroundColor:
+      event.gender === 'mens' ? '#267703' :
+      event.gender === 'womens' ? '#2b6cb0' :
+      event.gender === 'mensAorangi' ? '#267703' :
+      '#2b6cb0',
     color: 'white',
     borderRadius: '4px',
   },
 });
 
+type CustomToolbarProps = ToolbarProps<MyEvent, object> & {
+  calendarMode: CalendarMode;
+  onCalendarModeChange: (mode: CalendarMode) => void;
+};
 
-const CustomToolbar: React.FC<ToolbarProps<MyEvent, object>> = ({
-  label,
-  onNavigate,
-  onView,
-  view,
+const CustomToolbar: React.FC<CustomToolbarProps> = ({
+  label, onNavigate, onView, view, calendarMode, onCalendarModeChange,
 }) => {
   return (
     <Box mb={4}>
-      <Grid templateRows="auto auto auto" gap={4} placeItems="center" justifyContent="center">
+      <Grid templateRows="auto auto auto auto auto" gap={4} placeItems="center" justifyContent="center">
+
+        {/* Club / Aorangi toggle */}
+        <GridItem className='calendarNavGridItem'>
+          <ButtonGroup isAttached variant="outline" colorScheme="blue" w="100%">
+            <Button
+              w="50%"
+              variant={calendarMode === 'club' ? 'solid' : 'outline'}
+              onClick={() => onCalendarModeChange('club')}
+            >
+              Club
+            </Button>
+            <Button
+              w="50%"
+              variant={calendarMode === 'aorangi' ? 'solid' : 'outline'}
+              onClick={() => onCalendarModeChange('aorangi')}
+            >
+              Aorangi
+            </Button>
+          </ButtonGroup>
+        </GridItem>
+
+        {/* Prev / Today / Next */}
         <GridItem className='calendarNavGridItem'>
           <ButtonGroup variant="solid" colorScheme="blue" w="100%">
             <Button w="33.33%" onClick={() => onNavigate('PREV')}>Prev</Button>
@@ -73,6 +112,7 @@ const CustomToolbar: React.FC<ToolbarProps<MyEvent, object>> = ({
           </ButtonGroup>
         </GridItem>
 
+        {/* Month / Week toggle */}
         <GridItem className='calendarNavGridItem'>
           <ButtonGroup isAttached variant="outline" colorScheme="blue" w="100%">
             <Button
@@ -98,17 +138,18 @@ const CustomToolbar: React.FC<ToolbarProps<MyEvent, object>> = ({
 
         {/* Legend */}
         <GridItem>
-          <Flex gap={6}>
-            <Flex align="center" gap={2}>
-              <Box w={3} h={3} borderRadius="sm" bg="#276749" />
-              <Text fontSize="sm">Men's Events</Text>
+            <Flex gap={6}>
+              <Flex align="center" gap={2}>
+                <Box w={3} h={3} borderRadius="sm" bg="#267703" />
+                <Text fontSize="sm">Men's Events</Text>
+              </Flex>
+              <Flex align="center" gap={2}>
+                <Box w={3} h={3} borderRadius="sm" bg="#2b6cb0" />
+                <Text fontSize="sm">Women's Events</Text>
+              </Flex>
             </Flex>
-            <Flex align="center" gap={2}>
-              <Box w={3} h={3} borderRadius="sm" bg="#2b6cb0" />
-              <Text fontSize="sm">Women's Events</Text>
-            </Flex>
-          </Flex>
         </GridItem>
+
       </Grid>
     </Box>
   );
@@ -116,11 +157,15 @@ const CustomToolbar: React.FC<ToolbarProps<MyEvent, object>> = ({
 
 
 export default function Schedule() {
-
   const { width } = UseWindowSize();
   const isDesktopView = width > MobileWidth;
 
+  moment.locale('en', { week: { dow: 1 } });
   const localizer = momentLocalizer(moment);
+
+  const [calendarMode, setCalendarMode] = React.useState<CalendarMode>('club');
+
+  const activeEvents = calendarMode === 'club' ? clubEvents : aorangiEvents;
 
   const [currentDate, setCurrentDate] = React.useState(
     moment().startOf('isoWeek').toDate()
@@ -146,7 +191,7 @@ export default function Schedule() {
 
   const handleSelectEvent = (event: MyEvent) => {
     const date = moment(event.start).startOf('day');
-    const dayEvents = events.filter(e =>
+    const dayEvents = activeEvents.filter(e =>
       moment(e.start).startOf('day').isSame(date)
     );
     setSelectedDate(event.start);
@@ -154,27 +199,37 @@ export default function Schedule() {
     onOpen();
   };
 
-
   const MyCalendar = () => (
     <div>
-      <PageTitle mainText='SCHEDULE' image={TitleImage}/>
+      <PageTitle mainText='SCHEDULE' image={TitleImage} />
       <div className={isDesktopView ? "schedulePageContainerDesktop" : "schedulePageContainerMobile"}>
         <Calendar
           localizer={localizer}
-          events={events}
-          components={{ 
-            toolbar: CustomToolbar,
+          events={activeEvents}
+          components={{
+            toolbar: (props) => (
+              <CustomToolbar
+                {...props}
+                calendarMode={calendarMode}
+                onCalendarModeChange={setCalendarMode}
+              />
+            ),
           }}
           startAccessor="start"
           endAccessor="end"
           style={{ height: isDesktopView ? 1000 : 800 }}
           views={['month', 'agenda']}
-          defaultView={ isDesktopView ? "month" : "agenda" }
+          defaultView={isDesktopView ? 'month' : 'agenda'}
           eventPropGetter={eventStyleGetter}
           length={6}
           date={currentDate}
           onNavigate={handleNavigate}
           onSelectEvent={handleSelectEvent}
+          formats={{
+            agendaDateFormat: 'DD/MM/YYYY',
+            agendaHeaderFormat: ({ start, end }) =>
+              `${moment(start).format('DD/MM/YYYY')} – ${moment(end).format('DD/MM/YYYY')}`,
+          }}
         />
       </div>
 
@@ -200,7 +255,12 @@ export default function Schedule() {
                   h={3}
                   borderRadius="sm"
                   flexShrink={0}
-                  bg={event.gender === 'mens' ? '#276749' : '#2b6cb0'}
+                  bg={
+                    event.gender === 'mens' ? '#267703' :
+                    event.gender === 'womens' ? '#2b6cb0' :
+                    event.gender === 'mensAorangi' ? '#267703' :
+                    '#2b6cb0'
+                  }
                 />
                 <Text>{event.title}</Text>
               </Flex>

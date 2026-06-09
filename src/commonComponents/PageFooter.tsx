@@ -12,7 +12,7 @@ import UseWindowSize from './UseWindowSize';
 export default function PageFooter() {
 
     const googleMapUrl = 'https://www.google.com/maps/place/Mayfield+Golf+Club/@-43.8140236,171.4369777,15.5z/data=!4m14!1m7!3m6!1s0x6d2dbbc14e738f99:0x6637d3aaee9bc6a!2sMayfield+Golf+Club!8m2!3d-43.8162247!4d171.440136!16s%2Fg%2F1tdyftvc!3m5!1s0x6d2dbbc14e738f99:0x6637d3aaee9bc6a!8m2!3d-43.8162247!4d171.440136!16s%2Fg%2F1tdyftvc?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D';
-    const emailAddress = 'mayfield@golf.co.nz';
+    const emailAddress = 'mayfieldgolf260@gmail.com';
 
     const { width } = UseWindowSize();
 
@@ -38,7 +38,7 @@ export default function PageFooter() {
                   <GridItem colSpan={1}>
                       <Text variant={"semiboldWhite"}>Contact	&nbsp;<PhoneIcon/></Text>
                       <Link variant={"semiboldWhite"} href={emailAddress}>{emailAddress}</Link>
-                      <Text variant={"semiboldWhite"}>+64 3 303 6342</Text>
+                      <Text variant={"semiboldWhite"}>+64 3 303 6301</Text>
                   </GridItem>
                 </Center>
             </Grid>
@@ -67,7 +67,7 @@ export default function PageFooter() {
             <GridItem colSpan={1}>
                 <Text variant={"semiboldWhite"}>Contact	&nbsp;<PhoneIcon/></Text>
                 <Link variant={"semiboldWhite"} href={emailAddress}>{emailAddress}</Link>
-                <Text variant={"semiboldWhite"}>+64 3 303 6342</Text>
+                <Text variant={"semiboldWhite"}>+64 3 303 6301</Text>
             </GridItem>
           </Center>
       </Grid>
