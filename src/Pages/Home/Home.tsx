@@ -88,7 +88,7 @@ const greenFeesSection = (
     </CardBody>
     <CardFooter display='flex' justifyContent='center' pt={0}>
       <Stack spacing={2} textAlign='center'>
-        <Text className='textMedium'>Please fill out a Green Fee Ticket and carry this with you. Payment can be made by Cash via the Green Fees Box or by Online Banking. Payments can be made to:</Text>
+        <Text className='textMedium'>Please fill out a Green Fee Ticket and carry this with you. Payment can be made by cash via the Green Fees Box or by Online Banking. Payments can be made to:</Text>
         <Text className='textMedium'>Mayfield Golf Club</Text>
         <Text className='textMedium'>03-1903-0038936-10</Text>
         <Text className='textMedium'>Please use your Green Fee Ticket Number as reference.</Text>

@@ -52,7 +52,7 @@ export default function CourseTableLong() {
                     <h2>
                     <AccordionButton>
                         <Box as='span' flex='1' textAlign='left'>
-                            Mens
+                            <Text className='textLarge'>Mens</Text>
                         </Box>
                         <AccordionIcon />
                     </AccordionButton>
@@ -101,7 +101,7 @@ export default function CourseTableLong() {
                     <h2>
                         <AccordionButton>
                             <Box as='span' flex='1' textAlign='left'>
-                                Womens
+                                <Text className='textLarge'>Womens</Text>
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>

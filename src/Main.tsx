@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import { AnimatePresence, motion } from "motion/react"
 import Home from './Pages/Home/Home';
-import Contact from './Pages/Contact/Contact';
 import Schedule from './Pages/Schedule/Schedule';
 import Course from './Pages/Course/Course';
 import PageHeader from './CommonComponents/PageHeader';

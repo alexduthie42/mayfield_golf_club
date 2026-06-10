@@ -348,7 +348,7 @@ body {
 
 .schedulePageContainerMobile {
   padding-top: 30px;
-  padding-bottom: 100px;
+  padding-bottom: 30px;
   right: 0px;
   left: 0px;
   margin-left: auto;
@@ -448,6 +448,15 @@ th.rbc-header:nth-child(2) {
   color: rgb(98, 98, 98);
 }
 
+.daysOfPlayCard,
+.scheduleDownloadCard {
+  width: 100%;
+  max-width: 400px;
+  margin: 16px auto;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  flex: 1;
+}
 
 /******************** Common **********************/
 
