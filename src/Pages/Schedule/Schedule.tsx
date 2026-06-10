@@ -153,7 +153,7 @@ const CustomToolbar: React.FC<CustomToolbarProps> = ({
               </Flex>
               <Flex align="center" gap={2}>
                 <Box w={3} h={3} borderRadius="sm" bg={womensColour} />
-                <Text fontSize="sm">Women's Events</Text>
+                <Text fontSize="sm">Ladies' Events</Text>
               </Flex>
             </Flex>
         </GridItem>
