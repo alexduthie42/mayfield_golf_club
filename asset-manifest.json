@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/mayfield_golf_club/static/css/main.0fa5b828.css",
-    "main.js": "/mayfield_golf_club/static/js/main.96ca328e.js",
+    "main.css": "/mayfield_golf_club/static/css/main.637b30ca.css",
+    "main.js": "/mayfield_golf_club/static/js/main.b627646c.js",
     "static/js/453.39ddfc52.chunk.js": "/mayfield_golf_club/static/js/453.39ddfc52.chunk.js",
     "static/media/Slide5.jpg": "/mayfield_golf_club/static/media/Slide5.5d3aea3a209a5611e246.jpg",
     "static/media/Slide2.jpg": "/mayfield_golf_club/static/media/Slide2.a1fb7e46eabd7e645539.jpg",
     "static/media/Slide1.jpg": "/mayfield_golf_club/static/media/Slide1.5b50c3c0bf2a9c7d428f.jpg",
     "static/media/Slide4.jpg": "/mayfield_golf_club/static/media/Slide4.be4e55c262de760764b0.jpg",
     "static/media/TitleImage.jpg": "/mayfield_golf_club/static/media/TitleImage.3f0d7a06c113e3c0ca45.jpg",
-    "static/media/CourseMapImage.png": "/mayfield_golf_club/static/media/CourseMapImage.5c3bde5459fb14739003.png",
+    "static/media/CourseMapImage.png": "/mayfield_golf_club/static/media/CourseMapImage.20cd5e772ee81b343eb3.png",
     "static/media/Image2.jpg": "/mayfield_golf_club/static/media/Image2.76fd4515b8251a2c2fd3.jpg",
     "static/media/Image1.jpg": "/mayfield_golf_club/static/media/Image1.04f07a3f40a102a54803.jpg",
     "static/media/hole6.jpg": "/mayfield_golf_club/static/media/hole6.a927d77a046ea51a9c0b.jpg",
@@ -22,12 +22,12 @@
     "static/media/hole7.jpg": "/mayfield_golf_club/static/media/hole7.e07cc7a512ab8e31a52e.jpg",
     "static/media/MayfieldGolfClubEmblem.png": "/mayfield_golf_club/static/media/MayfieldGolfClubEmblem.70f8ee3b518c4f356535.png",
     "index.html": "/mayfield_golf_club/index.html",
-    "main.0fa5b828.css.map": "/mayfield_golf_club/static/css/main.0fa5b828.css.map",
-    "main.96ca328e.js.map": "/mayfield_golf_club/static/js/main.96ca328e.js.map",
+    "main.637b30ca.css.map": "/mayfield_golf_club/static/css/main.637b30ca.css.map",
+    "main.b627646c.js.map": "/mayfield_golf_club/static/js/main.b627646c.js.map",
     "453.39ddfc52.chunk.js.map": "/mayfield_golf_club/static/js/453.39ddfc52.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0fa5b828.css",
-    "static/js/main.96ca328e.js"
+    "static/css/main.637b30ca.css",
+    "static/js/main.b627646c.js"
   ]
 }
