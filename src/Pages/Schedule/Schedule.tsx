@@ -172,19 +172,19 @@ const daysOfPlay = (
     <CardBody pt={0}>
       <Stack spacing={2}>
         <Flex direction="column">
-          <Text className='textLarge'>Satuday - Mens</Text>
+          <Text className='textLarge'>Saturday - Mens</Text>
           <Text className='textMedium'>Discs in by 12.30pm - Draw 1.00pm</Text>
         </Flex>
         <Divider />
         <Flex direction="column">
           <Text className='textLarge'>Tuesday - Ladies</Text>
           <Text className='textMedium'>Discs in by 10.10am - Start 10.30am</Text>
-          <Text className='textMedium'>Daylight Savings -Discs in by 9.10am - Start 9.30am</Text>
+          <Text className='textMedium'>Daylight Savings - Discs in by 9.10am - Start 9.30am</Text>
         </Flex>
         <Divider />
         <Flex direction="column">
           <Text className='textLarge'>Wednesday - Twilight</Text>
-          <Text className='textMedium'>Draw 4.00pm & 6.00pm November - Feburary</Text>
+          <Text className='textMedium'>Draw 4.00pm & 6.00pm November - February</Text>
           <Text className='textMedium'>Draw 1.00pm March - October</Text>
           <Text className='textMedium'>Report 15 minutes prior to start</Text>
         </Flex>
@@ -208,7 +208,7 @@ const scheduleDownload = (
       <Stack spacing={3}>
         <Button
           as="a"
-          href="/Content/MayfieldGolfClubMensCalander2026.pdf"
+          href={`${process.env.PUBLIC_URL}/Content/MayfieldGolfClubMensCalander2026.pdf`}
           download
           colorScheme="green"
           variant="outline"
@@ -218,7 +218,7 @@ const scheduleDownload = (
         </Button>
         <Button
           as="a"
-          href="/Content/MayfieldGolfLadiesCalendar2026.pdf"
+          href={`${process.env.PUBLIC_URL}/Content/MayfieldGolfLadiesCalendar2026.pdf`}
           download
           colorScheme="blue"
           variant="outline"
