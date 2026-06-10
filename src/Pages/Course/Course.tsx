@@ -28,7 +28,7 @@ export default function Course() {
               <Text className='textLargeBold'>COURSE MAP</Text>
             </div>
             <div className='courseTextDesktop'>
-              <Text className='textLarge'>Mayfield Golf Course offers a 9 hole course with alternating tees for a full 18 holes. The course features a range of par 3, 4, and 5 holes with some holes including bunkers and water traps giving a variety of play across the course.</Text>
+              <Text className='textLarge'>Mayfield Golf Course offers a 9 hole course with alternating tees for a full 18 holes. The course features a range of par 3, 4, and 5 holes with some holes including bunkers and water traps, giving a variety of play across the course.</Text>
             </div>
           </div>
           <Grid templateColumns={`repeat(2, 1fr)`} gap={0} rounded="xl" overflow="hidden">
