@@ -111,15 +111,6 @@ const CustomToolbar: React.FC<CustomToolbarProps> = ({
           </ButtonGroup>
         </GridItem>
 
-        {/* Prev / Today / Next */}
-        <GridItem className='calendarNavGridItem'>
-          <ButtonGroup variant="solid" colorScheme="blue" w="100%">
-            <Button w="33.33%" onClick={() => onNavigate('PREV')}>Prev</Button>
-            <Button w="33.33%" onClick={() => onNavigate('TODAY')}>Today</Button>
-            <Button w="33.33%" onClick={() => onNavigate('NEXT')}>Next</Button>
-          </ButtonGroup>
-        </GridItem>
-
         {/* Month / Week toggle */}
         <GridItem className='calendarNavGridItem'>
           <ButtonGroup isAttached variant="outline" colorScheme="blue" w="100%">
@@ -137,6 +128,15 @@ const CustomToolbar: React.FC<CustomToolbarProps> = ({
             >
               Week
             </Button>
+          </ButtonGroup>
+        </GridItem>
+
+        {/* Prev / Today / Next */}
+        <GridItem className='calendarNavGridItem'>
+          <ButtonGroup variant="solid" colorScheme="blue" w="100%">
+            <Button w="33.33%" onClick={() => onNavigate('PREV')}>Prev</Button>
+            <Button w="33.33%" onClick={() => onNavigate('TODAY')}>Today</Button>
+            <Button w="33.33%" onClick={() => onNavigate('NEXT')}>Next</Button>
           </ButtonGroup>
         </GridItem>
 
