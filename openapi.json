@@ -543,9 +543,7 @@
       "EventType": {
         "enum": [
           "MenMayfield",
-          "WomenMayfield",
-          "MenAorangi",
-          "WomenAorangi"
+          "WomenMayfield"
         ]
       }
     },

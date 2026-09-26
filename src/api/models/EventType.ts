@@ -19,9 +19,7 @@
  */
 export const EventType = {
     MenMayfield: 'MenMayfield',
-    WomenMayfield: 'WomenMayfield',
-    MenAorangi: 'MenAorangi',
-    WomenAorangi: 'WomenAorangi'
+    WomenMayfield: 'WomenMayfield'
 } as const;
 export type EventType = typeof EventType[keyof typeof EventType];
 

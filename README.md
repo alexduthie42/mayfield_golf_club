@@ -48,3 +48,19 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## Generate API client
 
 npx @openapitools/openapi-generator-cli generate -i openapi.json -g typescript-fetch -o src/api
+
+## Admin event calendar
+
+The event administration page is available at `/admin`. On the current GitHub Pages
+deployment, its full URL is
+`https://alexduthie42.github.io/mayfield_golf_club/admin`.
+
+Register that URL as a **Single-page application** redirect URI for the Entra
+application. For local development, also register `http://localhost:3000/admin`.
+The GitHub Pages build publishes an `404.html` fallback so direct visits to the
+admin URL and the Entra redirect can load the client app.
+
+The admin calendar uses the production Events API at
+`https://mayfieldgolfclub-api.azurewebsites.net` by default. Set
+`REACT_APP_API_BASE_URL` to override it. Event creation, updates, and deletes send
+the Entra access token as a bearer token; loading events does not require a token.
