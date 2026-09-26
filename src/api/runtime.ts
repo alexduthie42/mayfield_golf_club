@@ -14,11 +14,10 @@
 
 
 export const BASE_PATH = (
-    process.env.REACT_APP_API_BASE_URL ||
-    (process.env.NODE_ENV === 'development'
+        process.env.NODE_ENV === 'development'
         ? 'https://localhost:7222'
         : 'https://mayfieldgolfclub-api.azurewebsites.net')
-).replace(/\/+$/, "");
+.replace(/\/+$/, "");
 
 export interface ConfigurationParameters {
     basePath?: string; // override base path
