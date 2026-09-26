@@ -10,10 +10,9 @@ import moment from 'moment'
 import { MobileWidth } from '../../CommonComponents/Globals';
 import UseWindowSize from '../../CommonComponents/UseWindowSize';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import MensEventsRaw from './Content/MensEvents.json';
-import WomensEventsRaw from './Content/WomensEvents.json';
-import MensAorangiEventsRaw from './Content/MensAorangiEvents.json';
-import WomensAorangiEventsRaw from './Content/WomensAorangiEvents.json';
+import { EventsApi } from '../../api/apis/EventsApi';
+import type { EventResponse } from '../../api/models/EventResponse';
+import { EventType } from '../../api/models/EventType';
 import {
   Modal, ModalOverlay, ModalContent, ModalHeader,
   ModalBody, ModalCloseButton, useDisclosure,
@@ -30,36 +29,28 @@ type MyEvent = {
 
 type CalendarMode = 'club' | 'aorangi';
 
-const mensEvents: MyEvent[] = MensEventsRaw.map(e => ({
-  ...e,
-  start: new Date(e.start),
-  end: new Date(e.end),
-  gender: 'mens',
-}));
+const toCalendarEvent = (event: EventResponse, gender: MyEvent['gender']): MyEvent => ({
+  title: event.title,
+  start: event.date,
+  end: event.date,
+  gender,
+});
 
-const womensEvents: MyEvent[] = WomensEventsRaw.map(e => ({
-  ...e,
-  start: new Date(e.start),
-  end: new Date(e.end),
-  gender: 'womens',
-}));
+// const mensAorangiEvents: MyEvent[] = MensAorangiEventsRaw.map(e => ({
+//   ...e,
+//   start: new Date(e.start),
+//   end: new Date(e.end),
+//   gender: 'mensAorangi',
+// }));
 
-const mensAorangiEvents: MyEvent[] = MensAorangiEventsRaw.map(e => ({
-  ...e,
-  start: new Date(e.start),
-  end: new Date(e.end),
-  gender: 'mensAorangi',
-}));
+// const womensAorangiEvents: MyEvent[] = WomensAorangiEventsRaw.map(e => ({
+//   ...e,
+//   start: new Date(e.start),
+//   end: new Date(e.end),
+//   gender: 'womensAorangi',
+// }));
 
-const womensAorangiEvents: MyEvent[] = WomensAorangiEventsRaw.map(e => ({
-  ...e,
-  start: new Date(e.start),
-  end: new Date(e.end),
-  gender: 'womensAorangi',
-}));
-
-const clubEvents: MyEvent[] = [...mensEvents, ...womensEvents];
-const aorangiEvents: MyEvent[] = [...mensAorangiEvents, ...womensAorangiEvents];
+// const aorangiEvents: MyEvent[] = [...mensAorangiEvents, ...womensAorangiEvents];
 
 const mensColour = '#267703';
 const womensColour = '#2b6cb0';
@@ -92,7 +83,7 @@ const CustomToolbar: React.FC<CustomToolbarProps> = ({
       <Grid templateRows="auto auto auto auto auto" gap={4} placeItems="center" justifyContent="center">
 
         {/* Club / Aorangi toggle */}
-        <GridItem className='calendarNavGridItem'>
+        {/* <GridItem className='calendarNavGridItem'>
           <ButtonGroup isAttached variant="outline" colorScheme="blue" w="100%">
             <Button
               w="50%"
@@ -109,7 +100,7 @@ const CustomToolbar: React.FC<CustomToolbarProps> = ({
               Aorangi
             </Button>
           </ButtonGroup>
-        </GridItem>
+        </GridItem> */}
 
         {/* Month / Week toggle */}
         <GridItem className='calendarNavGridItem'>
@@ -263,12 +254,48 @@ export default function Schedule() {
   const localizer = momentLocalizer(moment);
 
   const [calendarMode, setCalendarMode] = React.useState<CalendarMode>('club');
+  const [mensEvents, setMensEvents] = React.useState<MyEvent[]>([]);
+  const [womensEvents, setWomensEvents] = React.useState<MyEvent[]>([]);
+  const [eventsError, setEventsError] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    let isActive = true;
+
+    const loadEvents = async () => {
+      try {
+        const events = await new EventsApi().getEvents();
+        if (!isActive) return;
+
+        setMensEvents(
+          events
+            .filter(event => event.eventType === EventType.MenMayfield)
+            .map(event => toCalendarEvent(event, 'mens'))
+        );
+        setWomensEvents(
+          events
+            .filter(event => event.eventType === EventType.WomenMayfield)
+            .map(event => toCalendarEvent(event, 'womens'))
+        );
+      } catch (error) {
+        if (!isActive) return;
+        console.error('Failed to load schedule events', error);
+        setEventsError('Unable to load schedule events.');
+      }
+    };
+
+    void loadEvents();
+    return () => {
+      isActive = false;
+    };
+  }, []);
 
   const [currentDate, setCurrentDate] = React.useState(
     moment().startOf('isoWeek').toDate()
   );
 
-  const rawEvents = calendarMode === 'club' ? clubEvents : aorangiEvents;
+  const clubEvents: MyEvent[] = [...mensEvents, ...womensEvents];
+  // const rawEvents = calendarMode === 'club' ? clubEvents : aorangiEvents;
+  const rawEvents = clubEvents;
   const activeEvents = getEventsWithEmptyDays(rawEvents, currentDate);
 
   const handleNavigate = (date: Date, view: string, action: string) => {
@@ -309,6 +336,11 @@ export default function Schedule() {
 
   const MyCalendar = () => (
     <div>
+      {eventsError && (
+        <Text role="alert" color="red.600" textAlign="center" mb={4}>
+          {eventsError}
+        </Text>
+      )}
       <div className={isDesktopView ? "schedulePageContainerDesktop" : "schedulePageContainerMobile"}>
         <Calendar
           localizer={localizer}

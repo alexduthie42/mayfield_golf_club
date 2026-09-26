@@ -1,0 +1,12 @@
+.openapi-generator-ignore
+apis/AppSettingsApi.ts
+apis/EventsApi.ts
+apis/index.ts
+index.ts
+models/AppSettingRequest.ts
+models/AppSettingResponse.ts
+models/EventRequest.ts
+models/EventResponse.ts
+models/EventType.ts
+models/index.ts
+runtime.ts
