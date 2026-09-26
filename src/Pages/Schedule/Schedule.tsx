@@ -24,10 +24,8 @@ type MyEvent = {
   title: string;
   start: Date;
   end: Date;
-  gender: 'mens' | 'womens' | 'mensAorangi' | 'womensAorangi';
+  gender: 'mens' | 'womens';
 };
-
-type CalendarMode = 'club' | 'aorangi';
 
 const toCalendarEvent = (event: EventResponse, gender: MyEvent['gender']): MyEvent => ({
   title: event.title,
@@ -36,22 +34,6 @@ const toCalendarEvent = (event: EventResponse, gender: MyEvent['gender']): MyEve
   gender,
 });
 
-// const mensAorangiEvents: MyEvent[] = MensAorangiEventsRaw.map(e => ({
-//   ...e,
-//   start: new Date(e.start),
-//   end: new Date(e.end),
-//   gender: 'mensAorangi',
-// }));
-
-// const womensAorangiEvents: MyEvent[] = WomensAorangiEventsRaw.map(e => ({
-//   ...e,
-//   start: new Date(e.start),
-//   end: new Date(e.end),
-//   gender: 'womensAorangi',
-// }));
-
-// const aorangiEvents: MyEvent[] = [...mensAorangiEvents, ...womensAorangiEvents];
-
 const mensColour = '#267703';
 const womensColour = '#2b6cb0';
 
@@ -59,8 +41,6 @@ const eventStyleGetter: EventPropGetter<MyEvent> = (event) => ({
   style: {
     backgroundColor: !event.title ? 'transparent' :
       event.gender === 'mens' ? mensColour :
-      event.gender === 'womens' ? womensColour :
-      event.gender === 'mensAorangi' ? mensColour :
       womensColour,
     color: 'white',
     borderRadius: '4px',
@@ -70,37 +50,14 @@ const eventStyleGetter: EventPropGetter<MyEvent> = (event) => ({
   },
 });
 
-type CustomToolbarProps = ToolbarProps<MyEvent, object> & {
-  calendarMode: CalendarMode;
-  onCalendarModeChange: (mode: CalendarMode) => void;
-};
+type CustomToolbarProps = ToolbarProps<MyEvent, object>;
 
 const CustomToolbar: React.FC<CustomToolbarProps> = ({
-  label, onNavigate, onView, view, calendarMode, onCalendarModeChange,
+  label, onNavigate, onView, view,
 }) => {
   return (
     <Box mb={4}>
       <Grid templateRows="auto auto auto auto auto" gap={4} placeItems="center" justifyContent="center">
-
-        {/* Club / Aorangi toggle */}
-        {/* <GridItem className='calendarNavGridItem'>
-          <ButtonGroup isAttached variant="outline" colorScheme="blue" w="100%">
-            <Button
-              w="50%"
-              variant={calendarMode === 'club' ? 'solid' : 'outline'}
-              onClick={() => onCalendarModeChange('club')}
-            >
-              Club
-            </Button>
-            <Button
-              w="50%"
-              variant={calendarMode === 'aorangi' ? 'solid' : 'outline'}
-              onClick={() => onCalendarModeChange('aorangi')}
-            >
-              Aorangi
-            </Button>
-          </ButtonGroup>
-        </GridItem> */}
 
         {/* Month / Week toggle */}
         <GridItem className='calendarNavGridItem'>
@@ -253,7 +210,6 @@ export default function Schedule() {
   moment.locale('en', { week: { dow: 1 } });
   const localizer = momentLocalizer(moment);
 
-  const [calendarMode, setCalendarMode] = React.useState<CalendarMode>('club');
   const [mensEvents, setMensEvents] = React.useState<MyEvent[]>([]);
   const [womensEvents, setWomensEvents] = React.useState<MyEvent[]>([]);
   const [eventsError, setEventsError] = React.useState<string | null>(null);
@@ -294,7 +250,6 @@ export default function Schedule() {
   );
 
   const clubEvents: MyEvent[] = [...mensEvents, ...womensEvents];
-  // const rawEvents = calendarMode === 'club' ? clubEvents : aorangiEvents;
   const rawEvents = clubEvents;
   const activeEvents = getEventsWithEmptyDays(rawEvents, currentDate);
 
@@ -349,8 +304,6 @@ export default function Schedule() {
             toolbar: (props) => (
               <CustomToolbar
                 {...props}
-                calendarMode={calendarMode}
-                onCalendarModeChange={setCalendarMode}
               />
             ),
             agenda: {
@@ -405,8 +358,6 @@ export default function Schedule() {
                   flexShrink={0}
                   bg={
                     event.gender === 'mens' ? mensColour :
-                    event.gender === 'womens' ? womensColour :
-                    event.gender === 'mensAorangi' ? mensColour :
                     womensColour
                   }
                 />
