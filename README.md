@@ -60,7 +60,8 @@ application. For local development, also register `http://localhost:3000/admin`.
 The GitHub Pages build publishes an `404.html` fallback so direct visits to the
 admin URL and the Entra redirect can load the client app.
 
-The admin calendar uses the production Events API at
-`https://mayfieldgolfclub-api.azurewebsites.net` by default. Set
-`REACT_APP_API_BASE_URL` to override it. Event creation, updates, and deletes send
-the Entra access token as a bearer token; loading events does not require a token.
+The API client uses `https://localhost:7222` during local development and
+`https://mayfieldgolfclub-api.azurewebsites.net` in production. Set
+`REACT_APP_API_BASE_URL` to override either default. Event creation, updates, and
+deletes on the admin page send the Entra access token as a bearer token; loading
+events does not require a token.

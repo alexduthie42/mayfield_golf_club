@@ -31,7 +31,6 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { MobileWidth } from '../../CommonComponents/Globals';
 import UseWindowSize from '../../CommonComponents/UseWindowSize';
 import { EventsApi } from '../../api/apis/EventsApi';
-import { Configuration } from '../../api/runtime';
 import type { EventRequest } from '../../api/models/EventRequest';
 import type { EventResponse } from '../../api/models/EventResponse';
 import { EventType } from '../../api/models/EventType';
@@ -61,9 +60,7 @@ interface EventForm {
   eventType: EventType;
 }
 
-const api = new EventsApi(new Configuration({
-  basePath: process.env.REACT_APP_API_BASE_URL || 'https://mayfieldgolfclub-api.azurewebsites.net',
-}));
+const api = new EventsApi();
 
 moment.locale('en', { week: { dow: 1 } });
 const localizer = momentLocalizer(moment);
