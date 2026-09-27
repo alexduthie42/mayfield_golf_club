@@ -165,7 +165,7 @@ const membershipSection = (
       <div style={{
         width: '100%',
         maxWidth: isDesktopView ? '720px' : '500px',
-        margin: '0 auto 36px',
+        margin: '0 auto',
         overflow: 'hidden',
         border: '1px solid #e2e8f0',
         borderRadius: '12px',
