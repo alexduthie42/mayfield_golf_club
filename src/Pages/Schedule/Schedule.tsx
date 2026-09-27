@@ -22,6 +22,7 @@ import image2 from './Content/Image2.jpg';
 
 type MyEvent = {
   title: string;
+  details: string;
   start: Date;
   end: Date;
   gender: 'mens' | 'womens';
@@ -29,6 +30,7 @@ type MyEvent = {
 
 const toCalendarEvent = (event: EventResponse, gender: MyEvent['gender']): MyEvent => ({
   title: event.title,
+  details: event.details,
   start: event.date,
   end: event.date,
   gender,
@@ -189,6 +191,7 @@ const getEventsWithEmptyDays = (events: MyEvent[], currentDate: Date): MyEvent[]
     if (!hasEvents) {
       result.push({
         title: '',
+        details: '',
         start: day.toDate(),
         end: day.toDate(),
         gender: 'mens', // placeholder, won't be visible
@@ -336,7 +339,7 @@ export default function Schedule() {
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent style={{ maxWidth: '95%' }}>
           <ModalHeader>
             {selectedDate && moment(selectedDate).format('dddd, DD MMMM YYYY')}
           </ModalHeader>
@@ -361,7 +364,14 @@ export default function Schedule() {
                     womensColour
                   }
                 />
-                <Text>{event.title}</Text>
+                <Box>
+                  <Text fontWeight="semibold">{event.title}</Text>
+                  {event.details && (
+                    <Text fontSize="sm" color="gray.600" whiteSpace="pre-wrap">
+                      {event.details}
+                    </Text>
+                  )}
+                </Box>
               </Flex>
             ))}
           </ModalBody>

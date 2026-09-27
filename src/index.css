@@ -16,6 +16,43 @@ body {
   padding-top: 20px;
 }
 
+.courseStatus {
+  font-size: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.courseStatusDesktop {
+  border-radius: 9999px;
+  color: white;
+  padding: 0.35rem 0.75rem;
+}
+
+.courseStatusMobile {
+  padding: 0.35rem 0.75rem;
+  text-align: center;
+}
+
+.courseStatusMobile.courseStatusOpen {
+  background-color: #38A169;
+  color: white;
+}
+
+.courseStatusMobile.courseStatusClosed {
+  background-color: #E53E3E;
+  color: white;
+}
+
+.courseStatusDesktop.courseStatusOpen {
+  background-color: #38A169;
+  color: white;
+}
+
+.courseStatusDesktop.courseStatusClosed {
+  background-color: #E53E3E;
+  color: white;
+}
+
 .logo {
   /* height: auto; */
   height: 75px;
@@ -529,7 +566,5 @@ th.rbc-header:nth-child(2) {
   margin-right: auto;
   font-family: "Encode Sans Condensed", serif;
 }
-
-
 
 

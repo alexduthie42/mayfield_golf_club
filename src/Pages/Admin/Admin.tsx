@@ -5,6 +5,9 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Card,
+  CardBody,
+  CardHeader,
   Container,
   Flex,
   FormControl,
@@ -31,6 +34,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { MobileWidth } from '../../CommonComponents/Globals';
 import UseWindowSize from '../../CommonComponents/UseWindowSize';
 import { EventsApi } from '../../api/apis/EventsApi';
+import { AppSettingsApi } from '../../api/apis/AppSettingsApi';
+import type { AppSettingResponse } from '../../api/models/AppSettingResponse';
 import type { EventRequest } from '../../api/models/EventRequest';
 import type { EventResponse } from '../../api/models/EventResponse';
 import { EventType } from '../../api/models/EventType';
@@ -61,6 +66,7 @@ interface EventForm {
 }
 
 const api = new EventsApi();
+const appSettingsApi = new AppSettingsApi();
 
 moment.locale('en', { week: { dow: 1 } });
 const localizer = momentLocalizer(moment);
@@ -192,6 +198,12 @@ export default function Admin() {
   const [events, setEvents] = React.useState<CalendarEvent[]>([]);
   const [eventsError, setEventsError] = React.useState<string | null>(null);
   const [isLoadingEvents, setIsLoadingEvents] = React.useState(false);
+  const [courseOpenSetting, setCourseOpenSetting] =
+    React.useState<AppSettingResponse | null>(null);
+  const [courseOpenValue, setCourseOpenValue] = React.useState('');
+  const [appSettingsError, setAppSettingsError] = React.useState<string | null>(null);
+  const [isLoadingAppSettings, setIsLoadingAppSettings] = React.useState(false);
+  const [isSavingAppSettings, setIsSavingAppSettings] = React.useState(false);
   const [isSaving, setIsSaving] = React.useState(false);
   const [selectedEvent, setSelectedEvent] = React.useState<CalendarEvent | null>(null);
   const [form, setForm] = React.useState<EventForm>(emptyForm());
@@ -259,6 +271,55 @@ export default function Admin() {
         }
       });
 
+    return () => {
+      isActive = false;
+    };
+  }, [account]);
+
+  React.useEffect(() => {
+    if (!account) return;
+
+    let isActive = true;
+    setIsLoadingAppSettings(true);
+    setAppSettingsError(null);
+
+    const loadCourseOpenSetting = async () => {
+      try {
+        const accessToken = await acquireAdminAccessToken(account);
+        if (!accessToken) {
+          throw new Error('Unable to acquire an access token.');
+        }
+
+        const settings = await appSettingsApi.getAppSettings(
+          { names: ['CourseOpen'] },
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        );
+        const setting = settings.find((item) => item.name === 'CourseOpen');
+        if (!setting) {
+          throw new Error('The CourseOpen setting was not found.');
+        }
+        const normalizedValue = setting.value.trim().toLowerCase();
+        if (normalizedValue !== 'true' && normalizedValue !== 'false') {
+          throw new Error('The CourseOpen setting must have a true or false value.');
+        }
+
+        if (isActive) {
+          setCourseOpenSetting(setting);
+          setCourseOpenValue(normalizedValue);
+        }
+      } catch (error) {
+        console.error('Failed to load CourseOpen app setting', error);
+        if (isActive) {
+          setAppSettingsError(`Unable to load application settings: ${getErrorMessage(error)}`);
+        }
+      } finally {
+        if (isActive) {
+          setIsLoadingAppSettings(false);
+        }
+      }
+    };
+
+    void loadCourseOpenSetting();
     return () => {
       isActive = false;
     };
@@ -371,6 +432,36 @@ export default function Admin() {
     }
   };
 
+  const handleSaveCourseOpen = async () => {
+    if (!account || !courseOpenSetting) return;
+
+    setIsSavingAppSettings(true);
+    setAppSettingsError(null);
+    try {
+      const headers = await getAuthorizationHeaders(true);
+      if (!headers) {
+        throw new Error('Unable to acquire an access token.');
+      }
+
+      await appSettingsApi.updateAppSetting(
+        {
+          appSettingId: courseOpenSetting.id,
+          appSettingRequest: {
+            name: courseOpenSetting.name,
+            value: courseOpenValue,
+          },
+        },
+        { headers }
+      );
+      setCourseOpenSetting({ ...courseOpenSetting, value: courseOpenValue });
+    } catch (error) {
+      console.error('Failed to update CourseOpen app setting', error);
+      setAppSettingsError(`Unable to update application settings: ${getErrorMessage(error)}`);
+    } finally {
+      setIsSavingAppSettings(false);
+    }
+  };
+
   const handleSignIn = async () => {
     setAuthError(null);
     try {
@@ -420,7 +511,7 @@ export default function Admin() {
     return (
       <Container maxW="container.sm" py={16}>
         <Heading mb={4}>Admin sign in</Heading>
-        <Text mb={6}>Sign in with your Microsoft account to manage club events.</Text>
+        <Text mb={6}>Sign in with your Microsoft account to manage Mayfield Golf Club.</Text>
         {authError && (
           <Alert status="error" mb={4}>
             <AlertIcon />
@@ -435,16 +526,11 @@ export default function Admin() {
   return (
     <Container maxW="container.xl" py={8}>
       <Flex justify="space-between" align="center" mb={6} gap={4} wrap="wrap">
-        <Box>
-          <Heading>Event administration</Heading>
+        <Heading>Administration</Heading>
+        <Flex align="center" gap={4} wrap="wrap">
           <Text color="gray.600">{account.username}</Text>
-        </Box>
-        <ButtonGroup>
-          <Button colorScheme="green" onClick={() => openCreateForm()}>
-            Add event
-          </Button>
           <Button variant="outline" onClick={handleSignOut}>Sign out</Button>
-        </ButtonGroup>
+        </Flex>
       </Flex>
 
       {authError && (
@@ -453,54 +539,106 @@ export default function Admin() {
           {authError}
         </Alert>
       )}
-      {eventsError && (
-        <Alert status="error" mb={4} role="alert">
-          <AlertIcon />
-          {eventsError}
-        </Alert>
-      )}
-      {isLoadingEvents ? (
-        <Flex justify="center" py={12}><Spinner size="lg" color="blue.500" /></Flex>
-      ) : (
-        <div className={isDesktopView ? 'schedulePageContainerDesktop' : 'schedulePageContainerMobile'}>
-          <Calendar<CalendarEvent>
-            localizer={localizer}
-            events={activeEvents}
-            components={{
-              toolbar: CalendarToolbar,
-              agenda: { event: AgendaEvent },
-            }}
-            startAccessor="start"
-            endAccessor="end"
-            view={currentView}
-            onView={setCurrentView}
-            views={['month', 'agenda']}
-            selectable
-            onSelectSlot={({ start }) => openCreateForm(
-              start instanceof Date ? start : new Date(start)
-            )}
-            onSelectEvent={(event) => {
-              if (!event.isPlaceholder) {
-                openEditForm(event);
-              }
-            }}
-            eventPropGetter={eventStyleGetter}
-            style={{
-              height: currentView === 'agenda'
-                ? 'auto'
-                : isDesktopView ? 1000 : 800,
-            }}
-            length={4}
-            date={currentDate}
-            onNavigate={handleNavigate}
-            formats={{
-              agendaDateFormat: 'DD/MM/YYYY',
-              agendaHeaderFormat: ({ start, end }) =>
-                `${moment(start).format('DD/MM/YYYY')} – ${moment(end).format('DD/MM/YYYY')}`,
-            }}
-          />
-        </div>
-      )}
+      <Card mb={6}>
+        <CardHeader>
+          <Flex justify="space-between" align="center" gap={4} wrap="wrap">
+            <Heading size="md">Application Settings</Heading>
+          </Flex>
+        </CardHeader>
+        <CardBody pt={0}>
+          {appSettingsError && (
+            <Alert status="error" mb={4} role="alert">
+              <AlertIcon />
+              {appSettingsError}
+            </Alert>
+          )}
+          {isLoadingAppSettings ? (
+            <Flex justify="center" py={6}><Spinner color="blue.500" /></Flex>
+          ) : courseOpenSetting && (
+            <Flex align="end" gap={4} wrap="wrap">
+              <FormControl maxW="sm">
+                <FormLabel>Course open</FormLabel>
+                <Select
+                  value={courseOpenValue}
+                  onChange={(event) => setCourseOpenValue(event.target.value)}
+                  isDisabled={isSavingAppSettings}
+                >
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </Select>
+              </FormControl>
+              <Button
+                colorScheme="green"
+                onClick={handleSaveCourseOpen}
+                isLoading={isSavingAppSettings}
+              >
+                Save
+              </Button>
+            </Flex>
+          )}
+        </CardBody>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <Flex justify="space-between" align="center" gap={4} wrap="wrap">
+            <Heading size="md">Schedule Management</Heading>
+            <Button colorScheme="green" onClick={() => openCreateForm()}>
+              Add event
+            </Button>
+          </Flex>
+        </CardHeader>
+        <CardBody pt={0}>
+          {eventsError && (
+            <Alert status="error" mb={4} role="alert">
+              <AlertIcon />
+              {eventsError}
+            </Alert>
+          )}
+          {isLoadingEvents ? (
+            <Flex justify="center" py={12}><Spinner size="lg" color="blue.500" /></Flex>
+          ) : (
+            <div className={isDesktopView ? 'schedulePageContainerDesktop' : 'schedulePageContainerMobile'}>
+              <Calendar<CalendarEvent>
+                localizer={localizer}
+                events={activeEvents}
+                components={{
+                  toolbar: CalendarToolbar,
+                  agenda: { event: AgendaEvent },
+                }}
+                startAccessor="start"
+                endAccessor="end"
+                view={currentView}
+                onView={setCurrentView}
+                views={['month', 'agenda']}
+                selectable
+                onSelectSlot={({ start }) => openCreateForm(
+                  start instanceof Date ? start : new Date(start)
+                )}
+                onSelectEvent={(event) => {
+                  if (!event.isPlaceholder) {
+                    openEditForm(event);
+                  }
+                }}
+                eventPropGetter={eventStyleGetter}
+                style={{
+                  height: currentView === 'agenda'
+                    ? 'auto'
+                    : isDesktopView ? 1000 : 800,
+                }}
+                length={4}
+                date={currentDate}
+                onNavigate={handleNavigate}
+                formats={{
+                  agendaDateFormat: 'DD/MM/YYYY',
+                  agendaHeaderFormat: ({ start, end }) =>
+                    `${moment(start).format('DD/MM/YYYY')} – ${moment(end).format('DD/MM/YYYY')}`,
+                }}
+              />
+            </div>
+          )}
+        </CardBody>
+      </Card>
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />

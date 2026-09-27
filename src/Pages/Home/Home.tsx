@@ -157,6 +157,35 @@ const membershipSection = (
     </ContentSection>
   );
 
+  const facebookSection = (
+    <div>
+      <div className='homeTextContainerCenter'>
+        <Text className='textLargeBold'>FIND US ON FACEBOOK</Text>
+      </div>
+      <div style={{
+        width: '100%',
+        maxWidth: isDesktopView ? '720px' : '500px',
+        margin: '0 auto 36px',
+        overflow: 'hidden',
+        border: '1px solid #e2e8f0',
+        borderRadius: '12px',
+        background: 'white',
+        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+      }}>
+        <iframe
+          title='Mayfield Golf Club Facebook feed'
+          src='https://widgets.commoninja.com/iframe/bce2fe9b-0aab-44ae-bf88-ba8a36dedbe2'
+          width='100%'
+          height={500}
+          frameBorder='0'
+          scrolling='yes'
+          style={{ display: 'block', width: '100%', border: 'none' }}
+          loading='lazy'
+        />
+      </div>
+    </div>
+  );
+
   const googleMap = (
     <iframe
       className='googleMap'
@@ -179,6 +208,7 @@ const membershipSection = (
                 {membershipSection}
               </GridItem>
             </Grid>
+            {facebookSection}
             {locationSection}
           </div>
         </div>
@@ -189,6 +219,7 @@ const membershipSection = (
           <img src={image1} />
           {membershipSection}
           <img src={image2} />
+          {facebookSection}
           {locationSection}
         </div>
       )}
