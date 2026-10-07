@@ -1,5 +1,5 @@
-# https://www.robotstxt.org/robotstxt.html
+# https://robotstxt.org
 User-agent: *
 Disallow:
 
-Sitemap: https://mayfieldgolfclub.co.nz
+Sitemap: https://mayfieldgolfclub.co.nz/sitemap.xmlnp
